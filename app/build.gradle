@@ -13,9 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "IMDB_API_KEY1", "\"k_faa8dkjc\""
-        buildConfigField "String", "IMDB_API_KEY2", "\"k_d6xlardg\""
-        buildConfigField "String", "OMDB_API_KEY", "\"a1df376c\""
+        buildConfigField "String", "IMDB_API_KEY1", IMDB_API_KEY1
+        buildConfigField "String", "IMDB_API_KEY2", IMDB_API_KEY2
+        buildConfigField "String", "OMDB_API_KEY", OMDB_API_KEY
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
