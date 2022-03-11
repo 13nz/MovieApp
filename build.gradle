@@ -1,0 +1,16 @@
+buildscript {
+    ext {
+        IMDB_API_KEY1 = 'k_faa8dkjc'
+        IMDB_API_KEY2 = 'k_d6xlardg'
+        OMDB_API_KEY = 'a1df376c'
+    }
+}
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '7.1.2' apply false
+    id 'com.android.library' version '7.1.2' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

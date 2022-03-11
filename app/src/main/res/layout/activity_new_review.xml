@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewReviewActivity"
+    android:background="#2D3149"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/edtxtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:hint="Title"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/purple_200"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/purple_200"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                tools:src="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/imageBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add image" />
+
+            <Button
+                android:id="@+id/btnGenres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/lighpurp"
+                android:text="Genres" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:numStars="5"
+                android:stepSize="1"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/edtxtBody"
+                android:layout_width="match_parent"
+                android:layout_height="307dp"
+                android:layout_marginTop="6dp"
+                android:gravity="start|top"
+                android:hint="Your review"
+                android:inputType="textMultiLine"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="6dp"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/purple_200"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/purple_200"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/purple_200"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/purple_200" />
+
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SAVE" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
