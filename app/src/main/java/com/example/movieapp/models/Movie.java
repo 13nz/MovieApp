@@ -29,7 +29,6 @@ public class Movie {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "https://www.omdbapi.com/?apikey=" + BuildConfig.OMDB_API_KEY + "&i=" + id;
 
-        //final Movie[] movie = new Movie[1];
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -52,14 +51,6 @@ public class Movie {
         });
 
         queue.add(request);
-        /*
-        this.imdbID = imdbID;
-        this.title = movie[0].getTitle();
-        this.image = movie[0].getImage();
-        this.plot = movie[0].getPlot();
-        this.releaseYear = movie[0].getReleaseYear();
-
-         */
     }
 
     public String getImdbID() {

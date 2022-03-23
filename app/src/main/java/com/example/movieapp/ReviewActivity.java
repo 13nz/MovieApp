@@ -50,7 +50,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         String image = review.getImage();
 
-        if(image.substring(0, 5).equals("https")) {
+        if(image.startsWith("https")) {
             Picasso.get().load(image).into(imgView);
         } else {
             Bitmap bitmap = new ImageSaver(ReviewActivity.this).

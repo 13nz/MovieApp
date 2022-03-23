@@ -49,7 +49,6 @@ public class MovieAdapter extends RecyclerView.Adapter{
             Movie movie = movies.get(position);
             String id = movie.getImdbID();
 
-            Log.d("ID", id);
 
             Intent intent = new Intent(view.getContext(), MovieActivity.class);
             intent.putExtra("id", id);

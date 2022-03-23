@@ -147,7 +147,6 @@ public class Review {
             review.setTitle(cursor.getString(1));
             review.setRating(cursor.getInt(2));
             review.setDate(cursor.getString(3));
-            //review.setGenre(cursor.getString(4));
             review.setBody(cursor.getString(4));
             review.setImage(cursor.getString(5));
 
@@ -158,27 +157,6 @@ public class Review {
         return reviews;
     }
 
-    /*
-    public static ArrayList<Review> genreReviews(Context context, String genre) {
-        ArrayList<Review> reviews = new ArrayList<>();
-
-        SQLiteHelper helper = new SQLiteHelper(context);
-        SQLiteDatabase database = helper.getWritableDatabase();
-
-        Cursor cursor = database.rawQuery("SELECT * FROM reviews WHERE genre = ?", new String[]{genre});
-        cursor.moveToFirst();
-
-        while(!cursor.isAfterLast()) {
-            Review review = new Review(context, cursor.getInt(0));
-
-            reviews.add(review);
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return reviews;
-    }
-
-     */
 
     public void delete(Context context) {
         SQLiteHelper helper = new SQLiteHelper(context);
@@ -193,7 +171,6 @@ public class Review {
         SQLiteHelper helper = new SQLiteHelper(context);
         SQLiteDatabase database = helper.getWritableDatabase();
 
-        //database.execSQL("SELECT * FROM genres JOIN genres_reviews ON genres.id=genres_reviews.genre_id WHERE genres_reviews.review_id=" + this.id);
 
         Cursor cursor = database.rawQuery("SELECT name FROM genres LEFT JOIN genres_reviews ON genres.id=genres_reviews.genre_id WHERE genres_reviews.review_id=?", new String[]{String.valueOf(this.id)});
         cursor.moveToFirst();

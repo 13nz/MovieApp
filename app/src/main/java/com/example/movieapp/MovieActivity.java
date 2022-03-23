@@ -44,15 +44,12 @@ public class MovieActivity extends AppCompatActivity {
 
 
         String id = getIntent().getExtras().getString("id");
-        //Log.d("ID", id);
 
         RequestQueue queue = Volley.newRequestQueue(MovieActivity.this);
-        String key = getResources().getResourceName(R.string.key1);
 
 
         String url = "https://www.omdbapi.com/?apikey=" + BuildConfig.OMDB_API_KEY + "&i=" + id;
 
-        //Log.d("URL", url);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

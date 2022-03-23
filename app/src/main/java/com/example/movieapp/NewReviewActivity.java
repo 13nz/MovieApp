@@ -1,8 +1,10 @@
 package com.example.movieapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -26,8 +28,9 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
-public class NewReviewActivity extends AppCompatActivity {
+public class NewReviewActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     int SELECT_PICTURE = 200;
 
@@ -38,7 +41,7 @@ public class NewReviewActivity extends AppCompatActivity {
     private Spinner spinner;
     private RatingBar ratingBar;
     private EditText editTextDate;
-    private Button saveBtn, btnGenres;
+    private Button saveBtn, btnGenres, btnDate;
 
 
     @Override
@@ -57,6 +60,7 @@ public class NewReviewActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         saveBtn = findViewById(R.id.saveBtn);
         btnGenres = findViewById(R.id.btnGenres);
+        btnDate = findViewById(R.id.btnDate);
 
         if (getIntent().getExtras() != null) {
             edtxtTitle.setText(getIntent().getExtras().getString("title"));
@@ -83,6 +87,8 @@ public class NewReviewActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Select genres");
 
+
+
             // Add a checkbox list
             String[] genresList = {"Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Western"};
             boolean[] checkedItems = {false, false, false, false, false, false, false, false, false};
@@ -108,18 +114,21 @@ public class NewReviewActivity extends AppCompatActivity {
             });
             builder.setNegativeButton("Cancel", null);
 
-            // Create and show the alert dialog
             AlertDialog dialog = builder.create();
             dialog.show();
 
 
         });
 
+        btnDate.setOnClickListener(v -> {
+            DatePicker picker = new DatePicker();
+            picker.show(getSupportFragmentManager(), "date picker");
+        });
+
 
         saveBtn.setOnClickListener(view -> {
             String title = edtxtTitle.getText().toString();
             String body = edtxtBody.getText().toString();
-            //String genre = spinner.getSelectedItem().toString();
             String date = editTextDate.getText().toString();
             int rating = (int) ratingBar.getRating();
             String image = "";
@@ -140,13 +149,12 @@ public class NewReviewActivity extends AppCompatActivity {
                     image = getIntent().getExtras().getString("image");
                 }
 
-                if(!title.isEmpty() && !body.isEmpty()/*&& !genre.isEmpty()*/ && !date.isEmpty() &&!image.isEmpty() && !genres.isEmpty()) {
+                if(!title.isEmpty() && !body.isEmpty() && !date.isEmpty() &&!image.isEmpty() && !genres.isEmpty()) {
 
                     Review review = new Review();
                     review.setTitle(title);
                     review.setBody(body);
                     review.setDate(date);
-                    //review.setGenre(genre);
                     review.setRating(rating);
                     review.setImage(image);
                     ArrayList<Integer> genresID = new ArrayList<>();
@@ -207,8 +215,6 @@ public class NewReviewActivity extends AppCompatActivity {
 
     Bitmap useImage(Uri uri) throws IOException {
         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-        //use the bitmap as you like
-        //Drawable d = new BitmapDrawable(getResources(), bitmap);
         imageView.setImageBitmap(bitmap);
         return bitmap;
     }
@@ -250,4 +256,10 @@ public class NewReviewActivity extends AppCompatActivity {
         return id;
     }
 
+    @Override
+    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int dayOfMonth) {
+        String date = dayOfMonth + "/" + month + "/" + year;
+        Log.d("DATESET", date);
+        editTextDate.setText(date);
+    }
 }

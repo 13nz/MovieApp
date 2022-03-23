@@ -47,7 +47,7 @@ public class ReviewAdapter extends RecyclerView.Adapter{
         ((MyViewHolder)holder).txtvwBody.setText(reviews.get(position).getBody());
         ((MyViewHolder)holder).txtvwRating.setText(String.valueOf(reviews.get(position).getRating()));
         String imagePath = reviews.get(position).getImage();
-        if (imagePath.substring(0, 5).equals("https")) {
+        if (imagePath.startsWith("https")) {
             Picasso.get().load(reviews.get(position).getImage()).into(((MyViewHolder) holder).imgvwPic);
         } else {
             Bitmap bitmap = new ImageSaver(context).
