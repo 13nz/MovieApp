@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_reviews, R.id.navigation_search)
                 .build();
@@ -34,41 +33,5 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    int getGenreId(String genre) {
-        int id;
-        switch(genre) {
-            case "Action":
-                id = 0;
-                break;
-            case "Comedy":
-                id = 1;
-                break;
-            case "Drama":
-                id = 2;
-                break;
-            case "Fantasy":
-                id = 3;
-                break;
-            case "Horror":
-                id = 4;
-                break;
-            case "Mystery":
-                id = 5;
-                break;
-            case "Romance":
-                id = 6;
-                break;
-            case "Thriller":
-                id = 7;
-                break;
-            case "Western":
-                id = 8;
-                break;
-            default:
-                id = 0;
-                break;
-        }
-        return id;
-    }
 
 }

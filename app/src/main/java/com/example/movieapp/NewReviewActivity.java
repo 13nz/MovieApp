@@ -27,6 +27,7 @@ import com.example.movieapp.models.Review;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -68,19 +69,16 @@ public class NewReviewActivity extends AppCompatActivity implements DatePickerDi
 
         }
 
-        /*
-        String genres[] = new String[]{"Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Western"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, genres);
-        spinner.setAdapter(adapter);
-
-         */
-
 
         imgBtn.setOnClickListener(view -> {
             imageChooser();
         });
 
         ArrayList<String> genres = new ArrayList<>();
+
+        String[] genresList = {"Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Western"};
+
+        boolean[] checkedItems = {false, false, false, false, false, false, false, false, false};
 
         btnGenres.setOnClickListener(view -> {
             // Set up the alert builder
@@ -89,25 +87,30 @@ public class NewReviewActivity extends AppCompatActivity implements DatePickerDi
 
 
 
-            // Add a checkbox list
-            String[] genresList = {"Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Western"};
-            boolean[] checkedItems = {false, false, false, false, false, false, false, false, false};
             builder.setMultiChoiceItems(genresList, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                    checkedItems[which] = isChecked;
 
-                    String currentItem = genresList[which];
-                    if (!genres.contains(currentItem)) {
-                        genres.add(currentItem);
-                    }
                 }
             });
 
-            // Add OK and Cancel buttons
+
+
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    for (int i = 0; i < checkedItems.length; i ++) {
+                        if (checkedItems[i]) {
+                            if (!genres.contains(genresList[i])) {
+                                genres.add(genresList[i]);
+                            }
+                        } else {
+                            if (genres.contains(genresList[i])) {
+                                genres.remove(genresList[i]);
+                            }
+                        }
+                    };
+
                     Log.d("GENRES", genres.toString());
                     return;
                 }
@@ -132,6 +135,8 @@ public class NewReviewActivity extends AppCompatActivity implements DatePickerDi
             String date = editTextDate.getText().toString();
             int rating = (int) ratingBar.getRating();
             String image = "";
+
+
             if (getIntent().getExtras() == null) {
                 Uri uri = Uri.parse(imageView.getTag().toString());
                 Bitmap bitmap = null;
@@ -196,14 +201,11 @@ public class NewReviewActivity extends AppCompatActivity implements DatePickerDi
 
         if (resultCode == RESULT_OK) {
 
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
+
             if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
                 Uri selectedImageUri = data.getData();
 
                 if (null != selectedImageUri) {
-                    // update the preview image in the layout
                     imageView.setImageURI(selectedImageUri);
                     imageView.setTag(selectedImageUri.toString());
 
@@ -223,31 +225,31 @@ public class NewReviewActivity extends AppCompatActivity implements DatePickerDi
         int id;
         switch(genre) {
             case "Action":
-                id = 0;
-                break;
-            case "Comedy":
                 id = 1;
                 break;
-            case "Drama":
+            case "Comedy":
                 id = 2;
                 break;
-            case "Fantasy":
+            case "Drama":
                 id = 3;
                 break;
-            case "Horror":
+            case "Fantasy":
                 id = 4;
                 break;
-            case "Mystery":
+            case "Horror":
                 id = 5;
                 break;
-            case "Romance":
+            case "Mystery":
                 id = 6;
                 break;
-            case "Thriller":
+            case "Romance":
                 id = 7;
                 break;
-            case "Western":
+            case "Thriller":
                 id = 8;
+                break;
+            case "Western":
+                id = 9;
                 break;
             default:
                 id = 0;
