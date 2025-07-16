@@ -10,17 +10,4 @@ MovieApp is a sleek and user-friendly Android application built in Java using An
 - 🖼️ **Movie Details** – View posters, summaries, release dates, and more.
 - 🎞️ **Watchlist** – Maintain a list of movies you want to see next.
 
-## 🚀 Getting Started
 
-### Prerequisites
-
-- Android Studio (latest version recommended)
-- Java 8 or higher
-- Internet connection (for API calls)
-
-### Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/13nz/MovieApp.git
